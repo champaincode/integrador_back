@@ -58,10 +58,6 @@ passport.deserializeUser(function (id,done) {
   
 })
 
-app.get('/', function(req, res) {
-  console.log('/');
-  res.send('Hello, World!');
-});
 
 
 
