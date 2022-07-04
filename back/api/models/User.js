@@ -10,7 +10,7 @@ class User extends S.Model {
 }
 
 User.init(
-  {
+  { //PK USER_ID
     firstname: {
       type: S.STRING,
       allowNull: false,
@@ -26,6 +26,8 @@ User.init(
       validate: {
         isEmail: true,
         notEmpty: true,
+        // is: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+        //ESTA REGEXP COMPRUEBA EL FORMATO DEL MAIL 
       },
     },
     password: {
@@ -35,6 +37,10 @@ User.init(
    salt: {
       type: S.STRING,
       },
+      isAdmin:{
+        type:S.BOOLEAN,
+        defaultValue:false
+      }
   },
   { sequelize: db, modelName: "users" }
 );
@@ -51,4 +57,14 @@ User.beforeCreate((user) => {
     });
 });
 
+
+
+
 module.exports = User;
+
+//ADMIN
+// {"firstname": "Lio",
+//   "lastname": "Messi",
+//   "email": "liomessi@qatar2022.com",
+//   "password": "Messi10",
+//   "isAdmin":true}

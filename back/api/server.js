@@ -2,17 +2,19 @@ const express = require('express');
 const cors = require("cors");
 const morgan = require('morgan')
 const db = require("./config/index");
-const router = require("./routes");
+const volleyball = require('volleyball')
+const router = require("./routes/index");
 const sessions = require("express-session");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const localStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
+const Reservas = require("./models/Reservas");
 
 
 const app = express();
 app.use(cors());
-
+app.use(volleyball)
 app.use(express.json());
 app.use(cookieParser());
 app.use(sessions({ secret: "bootcamp" }));
@@ -58,17 +60,11 @@ passport.deserializeUser(function (id,done) {
   
 })
 
-
-
-
-
-
-
 app.use("/api", router);
 
 
 
-db.sync({force:false})
+db.sync({alter:true})
 .then(() => {
   console.log("db conectada perfectamente")
   app.listen(5000, function() {
