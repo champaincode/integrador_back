@@ -2,11 +2,11 @@ const S = require("sequelize");
 const db = require("../config/index");
 
 
-class Favorito extends S.Model{}
+class Favoritos extends S.Model{}
 
-Favorito.init({
+Favoritos.init({
 
 
 },{ sequelize: db, modelName: "favoritos" })
 
-module.exports = Favorito
+module.exports = Favoritos

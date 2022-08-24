@@ -10,14 +10,15 @@ const passport = require("passport");
 const localStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
 const Reservas = require("./models/Reservas");
-
+const Cart =require("./models/Cart")
+const index = require("./models/index")
 
 const app = express();
 app.use(cors());
 app.use(volleyball)
 app.use(express.json());
 app.use(cookieParser());
-app.use(sessions({ secret: "bootcamp" }));
+app.use(sessions({ secret: "bootcamp",saveUninitialized:true, resave:true }));
 app.use(morgan('dev'))
 app.use(passport.initialize());
 app.use(passport.session());
@@ -64,7 +65,7 @@ app.use("/api", router);
 
 
 
-db.sync({alter:true})
+db.sync({force:false})
 .then(() => {
   console.log("db conectada perfectamente")
   app.listen(5000, function() {

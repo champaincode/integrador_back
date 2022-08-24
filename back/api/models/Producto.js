@@ -9,10 +9,17 @@ Producto.init(
       allowNull: false,
       validate: {
         notEmpty: true,
-        len: [3, 30],
       },
     },
-    descriptions: {
+    drink: {
+        type: S.BOOLEAN,
+      },
+      food: {
+        type: S.BOOLEAN,
+      },
+
+   
+    description: {
       type: S.TEXT,
       allowNull: false,
       validate: {
@@ -30,22 +37,15 @@ Producto.init(
       type: S.INTEGER,
       allowNull: false,
       validate: {
-        min: 0, 
+        min: 0,
       },
       defaultValue: 0,
     },
-    thumbnail: {
-      type: S.STRING,
-      validate: {
-        isUrl: true,
-      },
-    },
     image: {
-      type: S.ARRAY(S.STRING),
+      type: S.STRING,
     },
-   
   },
-  { sequelize: db, modelName: "productos" }
+  { sequelize: db, modelName: "producto" }
 );
 
 module.exports = Producto;

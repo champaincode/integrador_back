@@ -7,6 +7,9 @@ class User extends S.Model {
   hash(password, salt) {
     return bcrypt.hash(password, salt);
   }
+ 
+ 
+ 
 }
 
 User.init(
@@ -40,7 +43,8 @@ User.init(
       isAdmin:{
         type:S.BOOLEAN,
         defaultValue:false
-      }
+      },
+    
   },
   { sequelize: db, modelName: "users" }
 );
@@ -57,14 +61,5 @@ User.beforeCreate((user) => {
     });
 });
 
-
-
-
 module.exports = User;
 
-//ADMIN
-// {"firstname": "Lio",
-//   "lastname": "Messi",
-//   "email": "liomessi@qatar2022.com",
-//   "password": "Messi10",
-//   "isAdmin":true}

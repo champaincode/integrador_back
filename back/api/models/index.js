@@ -1,5 +1,16 @@
-const Producto= require("./Producto")
-const Favoritos= require("./Favoritos")
-const User = require("./User")
+const Producto = require("./Producto");
+const User = require("./User");
+const Cart = require("./Cart")
 
-Producto.hasOne(Favoritos,)
+Cart.belongsTo(Producto)
+Producto.hasMany(Cart)
+
+User.belongsToMany(Producto,{ through: "fav"});
+Producto.belongsToMany(User,{ through: "fav"})
+
+
+
+Cart.belongsTo(User)
+User.hasMany(Cart)
+
+module.exports = { User, Producto, Cart };
