@@ -13,7 +13,7 @@ router.get("/", (req, res, next) => {
 router.get("/:userId", (req, res, next) => {
   Cart.findAll({
     order: [["id", "ASC"]],
-    where: { userId: req.params.userId},
+    where: { userId: req.params.userId },
     include: { model: Producto },
   }).then((producto) => {
     const list = producto.map((e) => {
@@ -23,38 +23,35 @@ router.get("/:userId", (req, res, next) => {
         productoId: e.productoId,
         title: e.tittle,
         price: e.price,
- }})
-      res.send(list)
-  })
-})
+      };
+    });
+    res.send(list);
+  });
+});
 
-
-router.post('/',(req,res,next) => {
+router.post("/", (req, res, next) => {
   Producto.findByPk(req.body.productoId).then((producto) => {
-   if (producto)Cart.create(req.body).then((cart) => {
-      User.findByPk(req.body.userId).then((user) => {
-      cart.setUser(user)
+   
+    console.log(finder);
+    Cart.create(req.body)
+      .then((cart) => {
+        User.findByPk(req.body.userId).then((user) => {
+          cart.setUser(user);
+        });
+        cart.setProducto(producto);
+        res.send(cart);
       })
-      cart.setProducto(producto)
-      res.send(cart)  
-    })
-    .catch((err) => console.log(err));
-  
-      else {
-        res.send("El producto no exite")
-      }
-    
-  })
-})
-
+      .catch((err) => console.log(err));
+  });
+});
 
 router.put("/:id", (req, res, next) => {
   Cart.update(req.body, {
-    where:{id:req.params.id},
-    returning:true,
+    where: { id: req.params.id },
+    returning: true,
   }).then((producto) => {
-    res.status(200).send(producto)
-  })
+    res.status(200).send(producto);
+  });
 });
 
 router.delete("/:id", (req, res, next) => {

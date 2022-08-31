@@ -20,6 +20,8 @@ Cart.init(
           min:0
       }
     },
+
+      
     quantity:{
       type: S.INTEGER,
       allowNull:false,
