@@ -1,3 +1,10 @@
+
+
+const faker = require('faker');
+
+//Generamos un nombre aleatorio
+let randomName = faker.name.findName();
+console.log(randomName);
 const seedProducts =[ 
   {
     "tittle": "skinny vainilla latte",
@@ -177,4 +184,4 @@ const seedProducts =[
 // seedFn();
 
 
-module.exports = seedDrinks
+module.exports = seedProducts

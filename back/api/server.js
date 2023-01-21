@@ -74,4 +74,3 @@ db.sync({force:false})
 }) .catch((err) => {
   console.log(err);
 });
-
