@@ -23,6 +23,7 @@ router.get("/:userId", (req, res, next) => {
         productoId: e.productoId,
         title: e.tittle,
         price: e.price,
+        image: e.image,
       };
     });
     res.send(list);
@@ -31,8 +32,6 @@ router.get("/:userId", (req, res, next) => {
 
 router.post("/", (req, res, next) => {
   Producto.findByPk(req.body.productoId).then((producto) => {
-   
-    console.log(finder);
     Cart.create(req.body)
       .then((cart) => {
         User.findByPk(req.body.userId).then((user) => {
@@ -59,10 +58,14 @@ router.delete("/:id", (req, res, next) => {
     where: { id: req.params.id },
   })
     .then((item) => {
-      item.destroy();
+      console.log(item, "ACA ESTA EL ITEM CARETAAA")
+      if (item !== null) {
+        item.destroy();
+      }
       res.sendStatus(204);
     })
     .catch(next);
 });
+
 
 module.exports = router;
