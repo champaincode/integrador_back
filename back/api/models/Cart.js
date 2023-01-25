@@ -16,18 +16,17 @@ Cart.init(
     price: {
       type: S.DECIMAL,
       allowNull: false,
-      validate:{
-          min:0
-      }
+      validate: {
+        min: 0,
+      },
     },
 
-      
-    quantity:{
+    quantity: {
       type: S.INTEGER,
-      allowNull:false,
-      validate:{
-          min:0
-      }
+      allowNull: false,
+      validate: {
+        min: 0,
+      },
     },
     image: {
       type: S.STRING,

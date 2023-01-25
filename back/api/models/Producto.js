@@ -12,13 +12,12 @@ Producto.init(
       },
     },
     drink: {
-        type: S.BOOLEAN,
-      },
-      food: {
-        type: S.BOOLEAN,
-      },
+      type: S.BOOLEAN,
+    },
+    food: {
+      type: S.BOOLEAN,
+    },
 
-   
     description: {
       type: S.TEXT,
       allowNull: false,

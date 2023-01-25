@@ -55,14 +55,15 @@ router.put("/:id", (req, res, next) => {
 
 router.delete("/:id", (req, res, next) => {
   Cart.findOne({
-    where: { id: req.params.id },
+    where: { userId: req.params.id },
   })
     .then((item) => {
       console.log(item, "ACA ESTA EL ITEM CARETAAA")
       if (item !== null) {
         item.destroy();
+       
       }
-      res.sendStatus(204);
+ res.sendStatus(204);
     })
     .catch(next);
 });
