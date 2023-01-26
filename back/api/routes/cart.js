@@ -58,15 +58,12 @@ router.delete("/:id", (req, res, next) => {
     where: { userId: req.params.id },
   })
     .then((item) => {
-      console.log(item, "ACA ESTA EL ITEM CARETAAA")
       if (item !== null) {
         item.destroy();
-       
       }
- res.sendStatus(204);
+      res.sendStatus(204);
     })
     .catch(next);
 });
-
 
 module.exports = router;
