@@ -5,16 +5,17 @@ const Users=require("./users")
 const Admin=require("./admin")
 const Cart=require("./cart")
 const Producto=require("./producto")
-const authRoutes = require('./auth.js');
 
+const Favoritos =require("./favoritos")
 
  
 router.use("/users",Users )
 router.use("/cart",Cart)
+router.use("/favorites", Favoritos)
 router.use("/reservas",Reservas)
 router.use("/producto",Producto)
 router.use("/admin",Admin )
-router.use('/auth', authRoutes);
+
 
 
 

@@ -3,48 +3,27 @@ const Favoritos = require("../models/Favoritos");
 const router = express.Router();
 
 
+router.get('/', async (req, res) => {
+    const favoritos = await Favoritos.findAll();
+    res.send(favoritos);
+  });
+  
+  router.post('/', async (req, res) => {
+    const favorito = await Favoritos.create({ nombre: req.body.nombre });
+    res.send(favorito);
+  });
+  
+  router.put('/:id', async (req, res) => {
+    const favorito = await Favoritos.findByPk(req.params.id);
+    await favorito.update({ nombre: req.body.nombre });
+    res.send(favorito);
+  });
+  
+  router.delete('/:id', async (req, res) => {
+    const favorito = await Favoritos.findByPk(req.params.id);
+    await favorito.destroy();
+    res.send();
+  });  
 
 
-
-
-// router.get("/:id",async (req,res)=>{
-//   try{
-//     const userId= req.params.id
-//   const userFav= await Favoritos.findAll({where:{userId}})
-//   return res.status(200).send(userFav)
-//   }catch(error){
-//     return res.sendStatus(404)
-//   }
-// })
-
-// router.post("/add", async (req, res) => {
-//   try {
-//     const { userId, code, original_title,poster_path, overview,vote_average } = req.body;
-//     await Favoritos.findOrCreate({
-//       where: { code, userId },
-//       defaults: { userId, code,original_title, poster_path, overview,vote_average}
-//     });
-//     return res.status(201);
-//   } catch (error) {
-//     console.log(error)
-//   }
-// });
-
-// router.delete("/remove" ,async (req, res) => {
-//   try {
-//      await Favoritos.destroy({
-//       where: req.body,
-//     });
-//     return res.sendStatus(200);
-//   } catch (error) {
-//     return error;
-//   }
-// });
-
-
-
-
-
-
-
-// module.exports = router;
+ module.exports = router
